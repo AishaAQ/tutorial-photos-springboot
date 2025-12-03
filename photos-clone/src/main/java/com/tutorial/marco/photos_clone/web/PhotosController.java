@@ -1,4 +1,4 @@
-package com.tutorial.marco.photos_clone.controller;
+package com.tutorial.marco.photos_clone.web;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.tutorial.marco.photos_clone.model.Photo;
 import com.tutorial.marco.photos_clone.service.PhotosService;
 
 import jakarta.validation.Valid;
@@ -56,7 +57,7 @@ public class PhotosController {
 	@PostMapping("/photos")
 	public Photo create(@RequestPart("data") MultipartFile file) throws IOException {
 		
-		return photosService.save(file.getOriginalFilename(), file.getBytes());
+		return photosService.save(file.getOriginalFilename(), file.getContentType(), file.getBytes());
 	}
  
 }

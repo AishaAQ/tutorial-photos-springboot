@@ -1,4 +1,4 @@
-package com.tutorial.marco.photos_clone.controller;
+package com.tutorial.marco.photos_clone.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -11,6 +11,16 @@ public class Photo {
 	@NotEmpty
 	private String fileName;
 	
+	private String contentType;
+	
+	public String getContentType() {
+		return contentType;
+	}
+
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
+	}
+
 	@JsonIgnore
 	private byte[] data;
 	

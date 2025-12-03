@@ -7,7 +7,7 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
-import com.tutorial.marco.photos_clone.controller.Photo;
+import com.tutorial.marco.photos_clone.model.Photo;
 
 @Service
 public class PhotosService {
@@ -29,10 +29,11 @@ public class PhotosService {
 		return db.remove(id);
 	}
 
-	public Photo save(String fileName, byte[] data) {
+	public Photo save(String fileName, String contentType, byte[] data) {
 		Photo photo = new Photo();
 		photo.setId(UUID.randomUUID().toString());
 		photo.setFileName(fileName);
+		photo.setContentType(contentType);
 		photo.setData(data);
 		db.put(photo.getId(), photo);
 		return photo;
