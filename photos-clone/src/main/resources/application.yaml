@@ -5,3 +5,11 @@ spring:
     multipart:
       max-file-size: 100MB
       max-request-size: 100MB
+  datasource:
+    url: jdbc:h2:file:~/photodb;AUTO_SERVER=TRUE;
+  sql:
+    init:
+      mode: always
+  h2:
+    console:
+      enabled: true
