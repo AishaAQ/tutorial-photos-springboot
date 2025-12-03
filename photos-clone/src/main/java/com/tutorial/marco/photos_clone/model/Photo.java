@@ -1,17 +1,25 @@
 package com.tutorial.marco.photos_clone.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.validation.constraints.NotEmpty;
 
+@Table("PHOTOS")
 public class Photo {
 	
-	private String id;
+	@Id
+	private Integer id;
 	
 	@NotEmpty
 	private String fileName;
 	
 	private String contentType;
+	
+	@JsonIgnore
+	private byte[] data;
 	
 	public String getContentType() {
 		return contentType;
@@ -20,9 +28,6 @@ public class Photo {
 	public void setContentType(String contentType) {
 		this.contentType = contentType;
 	}
-
-	@JsonIgnore
-	private byte[] data;
 	
 	public byte[] getData() {
 		return data;
@@ -32,20 +37,15 @@ public class Photo {
 		this.data = data;
 	}
 
-	public Photo(String id, String fileName) {
-		this.id = id;
-		this.fileName = fileName;
-	}
-
 	public Photo() {
 		
 	}
 
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
 	
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	

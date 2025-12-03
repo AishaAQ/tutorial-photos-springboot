@@ -8,34 +8,36 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 
 import com.tutorial.marco.photos_clone.model.Photo;
+import com.tutorial.marco.photos_clone.repository.PhotosRepository;
 
 @Service
 public class PhotosService {
 	
-	private Map<String, Photo> db = new HashMap<>() {{
-		put("1", new Photo("1","hello.jpg"));
-	}};
+	private final PhotosRepository photosRepository;
 
-	public Collection<Photo> get() {
+	public PhotosService(PhotosRepository photosRepository) {
+		this.photosRepository = photosRepository;
+	}
+
+	public Iterable<Photo> get() {
 		
-		return db.values();
+		return photosRepository.findAll();
 	}
 
-	public Photo get(String id) {
-		return db.get(id);
+	public Photo get(Integer id) {
+		return photosRepository.findById(id).orElse(null);
 	}
 
-	public Photo remove(String id) {
-		return db.remove(id);
+	public void remove(Integer id) {
+		photosRepository.deleteById(id);
 	}
 
 	public Photo save(String fileName, String contentType, byte[] data) {
 		Photo photo = new Photo();
-		photo.setId(UUID.randomUUID().toString());
 		photo.setFileName(fileName);
 		photo.setContentType(contentType);
 		photo.setData(data);
-		db.put(photo.getId(), photo);
+		photosRepository.save(photo);
 		return photo;
 	}
 
