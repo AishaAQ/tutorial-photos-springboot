@@ -1,4 +1,4 @@
-# 🔐 Photos Spring Boot App
+# 📸 Photos Spring Boot App
 
 A Spring Boot application that demonstrates uploading photos and downloading using an H2 database. 
 
